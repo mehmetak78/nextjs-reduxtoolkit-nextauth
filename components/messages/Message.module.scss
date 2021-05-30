@@ -1,0 +1,13 @@
+.message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #8a2b06;
+
+  margin: 1rem 0;
+
+  p {
+    padding-left: 1rem;
+  }
+
+}

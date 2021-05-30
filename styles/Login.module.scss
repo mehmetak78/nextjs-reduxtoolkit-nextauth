@@ -1,0 +1,23 @@
+.loginCard {
+ // max-width: 60rem;
+  width: 100%;
+  margin: 2rem auto;
+  animation: card-appear 1s ease-out forwards;
+}
+
+.form-actions {
+  text-align: right;
+}
+
+
+@keyframes card-appear {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

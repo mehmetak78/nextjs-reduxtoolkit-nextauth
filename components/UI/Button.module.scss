@@ -1,0 +1,42 @@
+.btn {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid #8a2b06;
+  padding: 0.25rem 2rem;
+  border-radius: 20px;
+  font-weight: bold;
+  margin: 0.25rem;
+
+  &:hover,
+  &active {
+    background-color: #641e03;
+    border-color: #641e03;
+    color: white;
+  }
+}
+
+.btn1 {
+  background-color: #8a2b06;
+  color: white;
+}
+
+.btn2 {
+  background-color: transparent;
+  color: #8a2b06;
+}
+
+.btn3 {
+  font: inherit;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #8a2b06;
+  border: 1px solid #8a2b06;
+  width: 3rem;
+  text-align: center;
+  border-radius: 6px;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0.25rem;
+  padding: 0.25rem;
+}
+

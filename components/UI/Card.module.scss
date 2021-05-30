@@ -1,0 +1,33 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    text-decoration: none;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    animation: card-appear 1s ease-out forwards;
+    &:hover,
+    &:focus,
+    &:active {
+        border-color: #0070f3;
+    }
+
+}
+
+@keyframes card-appear {
+    from {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

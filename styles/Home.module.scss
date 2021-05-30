@@ -1,0 +1,30 @@
+.home {
+  h1 {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 9rem;
+    text-align: center;
+
+    & + p {
+      text-align: center;
+      line-height: 1.5;
+      font-size: 1.5rem;
+    }
+  }
+
+  .grid {
+    max-width: 800px;
+    margin-top: 3rem;
+  }
+
+  a {
+    width: 20rem;
+    cursor: pointer;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+
+}
