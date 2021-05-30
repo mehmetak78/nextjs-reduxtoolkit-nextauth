@@ -4,6 +4,9 @@
 
 - npm run dev
 
+
+
+
 Firebase:
     https://console.firebase.google.com/project/react-auth-mak/authentication/users
 MongoDB
@@ -12,6 +15,8 @@ MongoDB
     Connect with google account
 ----
 
+.gitignore
+    /config/dev.js
 - npm insall sass
 - You can use .module.scss files now after. Just like .module.css
     Sample:
