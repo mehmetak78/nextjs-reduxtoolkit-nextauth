@@ -1,4 +1,4 @@
-import React, {Fragment, useCallback, useContext, useEffect} from 'react';
+import React, { useContext, useEffect} from 'react';
 import Card from "../components/UI/Card";
 import styles from '../styles/Login.module.scss'
 import Form from "../components/UI/Form";
@@ -13,12 +13,14 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 import AuthContext from "../context-store/auth-context";
 
 
-const LoginPage = (props) => {
+const SignupPage = (props) => {
   const username = useInput('text', 'name', 'User Name', (value) => value.trim() !== '')
   const password = useInput('text', 'password', 'Password', (value) => value.trim() !== '')
 
   const router = useRouter();
   const notificationCtx = useContext(NotificationContext);
+
+
   const {sendRequest, status, data, error} = useHttp(fetchLoginSignup);
   const authContext = useContext(AuthContext);
 
@@ -32,13 +34,13 @@ const LoginPage = (props) => {
         router.push('/')
         notificationCtx.showNotification({
                                            title: 'Success!',
-                                           message: 'Successfull Login',
+                                           message: 'Successfull Signup',
                                            status: 'success',
                                          });
       } else {
         console.log(error)
         notificationCtx.showNotification({
-                                           title: 'Login Error',
+                                           title: 'Signup Error',
                                            message: error,
                                            status: 'error',
                                          });
@@ -49,7 +51,7 @@ const LoginPage = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const userData = {
-      loginOrSignup: 'login',
+      loginOrSignup: 'signup',
       username: username.value,
       password: password.value
     }
@@ -69,7 +71,7 @@ const LoginPage = (props) => {
         </div>
         <div className={styles["form-actions"]}>
           <Button styletype='btn2' type='button' onClick={cancelHandler}>Cancel</Button>
-          <Button>Login</Button>
+          <Button>Sign Up</Button>
         </div>
         {status === 'pending' && <LoadingSpinner/>}
       </Card>
@@ -77,4 +79,4 @@ const LoginPage = (props) => {
   );
 }
 
-export default LoginPage;
+export default SignupPage;

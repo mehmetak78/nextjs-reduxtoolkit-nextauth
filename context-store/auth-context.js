@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 
 let logoutTimer;
 
@@ -8,6 +8,8 @@ const AuthContext = React.createContext({
                                           login: (token) => {},
                                           logout: () => {},
                                         });
+
+
 
 const calculateRemainingTime = (expirationTime) => {
   const currentTime = new Date().getTime();
@@ -60,8 +62,8 @@ export const AuthContextProvider = (props) => {
   useEffect(() => {
     const tokenData = retrieveStoredToken();
     if (tokenData) {
-      //logoutTimer = setTimeout(logoutHandler, tokenData.duration);
-      logoutTimer = setTimeout(logoutHandler, 5000);
+      logoutTimer = setTimeout(logoutHandler, tokenData.duration);
+      //logoutTimer = setTimeout(logoutHandler, 5000);
       setToken(tokenData.token);
     }
   }, [token,logoutHandler]);

@@ -9,7 +9,6 @@ const HeaderMessagesButton = (props) => {
 
   const messagesContext = useContext(MessagesContext);
   const {messages} = messagesContext;
-  console.log(messages)
 
   const numberOfMessages = messages.length;
   const btnClasses = `${classes.button} ${btnIsHighlighted ? classes.bump:''}`;

@@ -2,11 +2,14 @@ const FIREBASE_AUTH_DOMAIN = 'https://identitytoolkit.googleapis.com/';
 
 let url;
 
-export async function fetchLogin(loginData) {
-  url = FIREBASE_AUTH_DOMAIN + '/v1/accounts:signInWithPassword?key=AIzaSyCn0GxC6JsYFYptwMI3TFXMNn-Lr9mOPCQ';
+export async function fetchLoginSignup(userData) {
+  url = userData.loginOrSignup === 'signup'
+    ? FIREBASE_AUTH_DOMAIN + '/v1/accounts:signUp?key=AIzaSyCn0GxC6JsYFYptwMI3TFXMNn-Lr9mOPCQ'
+    : FIREBASE_AUTH_DOMAIN + '/v1/accounts:signInWithPassword?key=AIzaSyCn0GxC6JsYFYptwMI3TFXMNn-Lr9mOPCQ';
+
   const loginDataForFetch = {
-    email: loginData.username,
-    password: loginData.password,
+    email: userData.username,
+    password: userData.password,
     returnSecureToken: true
   }
 
@@ -19,7 +22,7 @@ export async function fetchLogin(loginData) {
   });
   const data = await response.json();
   if (!response.ok) {
-    throw new Error(data.message || 'Wrong username/password.');
+    throw new Error(data.message || 'Cannot Signup.');
   }
 
   return data;

@@ -6,15 +6,15 @@ import {AuthContextProvider} from "../context-store/auth-context";
 
 function MyApp({Component, pageProps}) {
   return (
-    <AuthContextProvider>
-      <MessagesContextProvider>
-        <NotificationContextProvider>
+    <NotificationContextProvider>
+      <AuthContextProvider>
+        <MessagesContextProvider>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </NotificationContextProvider>
-      </MessagesContextProvider>
-    </AuthContextProvider>
+        </MessagesContextProvider>
+      </AuthContextProvider>
+    </NotificationContextProvider>
   )
 }
 
