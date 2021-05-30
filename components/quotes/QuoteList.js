@@ -18,18 +18,17 @@ const QuoteList = (props) => {
 
   const router = useRouter();
 
-//
-  //const location = useLocation();
-  //const queryParams = new URLSearchParams(location.search);
-  const queryParams = router.query;
-  //const isSortingAscending = queryParams.get('sort') === 'asc';
+  // console.log(router.pathname)
+  // console.log(location.pathname)
+
+
   const {sort} = router.query;
   const isSortingAscending = sort === 'asc';
 
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const changeSortingHandler = () => {
-    router.push(`${location.pathname}?sort=${(isSortingAscending ? 'desc' : 'asc')}`);
+    router.push(`${router.pathname}?sort=${(isSortingAscending ? 'desc' : 'asc')}`);
   }
   return (
     <Fragment>

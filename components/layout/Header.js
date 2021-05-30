@@ -53,10 +53,15 @@ function Header(props) {
             </li>
             <li>
               <Link href='/quotes'>Quotes</Link>
-
             </li>
             <li>
               <Link href='/newquote'>AddQuote</Link>
+            </li>
+            <li>
+              <Link href='/meetups'>Meetups</Link>
+            </li>
+            <li>
+              <Link href='/new-meetup'>AddMeetup</Link>
             </li>
             <li>
               <button onClick={logoutHandler}>Logout</button>
