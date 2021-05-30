@@ -7,21 +7,16 @@ const PrivateContent = (props) => {
   const authContext = useContext(AuthContext);
   const {isLoggedIn} = authContext;
 
-  let isLoaded = false;
+  const [isLoaded, setisLoaded] = useState(false);
 
   useEffect(() => {
-    isLoaded = true;
-    console.log('Use Effect of Private ROute')
+    setisLoaded(true)
   }, [isLoggedIn]);
 
 
-  let router = null;
-
-  if (isLoaded) {
-     router = useRouter();
-     if (!isLoggedIn) {
-       router.push('/login')
-     }
+  const router = useRouter();
+  if (isLoaded && !isLoggedIn) {
+    router.push('/login')
   }
 
   return (
