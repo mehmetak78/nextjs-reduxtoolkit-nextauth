@@ -4,6 +4,12 @@
 
 - npm run dev
 
+Firebase:
+    https://console.firebase.google.com/project/react-auth-mak/authentication/users
+MongoDB
+    https://cloud.mongodb.com/v2/60aa96baec47a329580d642f#metrics/replicaSet/60aa9a2587c3b4109ea00aa3/explorer/meetups/meetups/find
+    MEHMET'S ORG - 2021-05-23 > PROJECT 0
+    Connect with google account
 ----
 
 - npm insall sass
