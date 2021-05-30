@@ -13,9 +13,8 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 import AuthContext from "../context-store/auth-context";
 
 
-const LoginPage = (props) => {
-  const username = useInput('text', 'name', 'User Name', (value) => value.trim() !== '')
-  const password = useInput('text', 'password', 'Password', (value) => value.trim() !== '')
+const ProfilePage = (props) => {
+  const password = useInput('text', 'password', 'New Password', (value) => value.trim() !== '')
 
   const router = useRouter();
   const notificationCtx = useContext(NotificationContext);
@@ -25,14 +24,11 @@ const LoginPage = (props) => {
   useEffect(() => {
     if (status === 'completed') {
       if (!error) {
-        const expirationTime = new Date(
-          new Date().getTime() + +data.expiresIn * 1000
-        );
-        authContext.login(username.value,data.idToken, expirationTime.toISOString());
+        authContext.login(authContext.userName, data.idToken,);
         router.push('/')
         notificationCtx.showNotification({
                                            title: 'Success!',
-                                           message: 'Successfull Login',
+                                           message: 'Successfull Change Password',
                                            status: 'success',
                                          });
       } else {
@@ -49,8 +45,8 @@ const LoginPage = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const userData = {
-      authType: 'login',
-      username: username.value,
+      authType: 'changepassword',
+      token: authContext.token,
       password: password.value
     }
     sendRequest(userData);
@@ -64,12 +60,12 @@ const LoginPage = (props) => {
     <Form onSubmit={submitHandler}>
       <Card>
         <div>
-          <Input inputHook={username}/>
+          <h1>{authContext.userName}</h1>
           <Input inputHook={password}/>
         </div>
         <div className={styles["form-actions"]}>
           <Button styletype='btn2' type='button' onClick={cancelHandler}>Cancel</Button>
-          <Button>Login</Button>
+          <Button>Change Password</Button>
         </div>
         {status === 'pending' && <LoadingSpinner/>}
       </Card>
@@ -77,4 +73,4 @@ const LoginPage = (props) => {
   );
 }
 
-export default LoginPage;
+export default ProfilePage;

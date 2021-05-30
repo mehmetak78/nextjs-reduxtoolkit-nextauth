@@ -49,6 +49,9 @@ function Header(props) {
               <Link href='/products'>Products</Link>
             </li>
             <li>
+              <Link href='/profile'>Profile</Link>
+            </li>
+            <li>
               <button onClick={logoutHandler}>Logout</button>
             </li>
           </ul>

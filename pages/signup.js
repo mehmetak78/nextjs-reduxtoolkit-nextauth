@@ -8,7 +8,7 @@ import Button from "../components/UI/Button";
 import {useRouter} from "next/router";
 import NotificationContext from "../context-store/notification-context";
 import useHttp from "../hooks/use-http";
-import {fetchLoginSignup} from "../helpers/AuthHelpers";
+import {fetchAuth} from "../helpers/AuthHelpers";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import AuthContext from "../context-store/auth-context";
 
@@ -21,7 +21,7 @@ const SignupPage = (props) => {
   const notificationCtx = useContext(NotificationContext);
 
 
-  const {sendRequest, status, data, error} = useHttp(fetchLoginSignup);
+  const {sendRequest, status, data, error} = useHttp(fetchAuth);
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const SignupPage = (props) => {
         const expirationTime = new Date(
           new Date().getTime() + +data.expiresIn * 1000
         );
-        authContext.login(data.idToken, expirationTime.toISOString());
+        authContext.login(username.value,data.idToken, expirationTime.toISOString());
         router.push('/')
         notificationCtx.showNotification({
                                            title: 'Success!',
@@ -51,7 +51,7 @@ const SignupPage = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const userData = {
-      loginOrSignup: 'signup',
+      authType: 'signup',
       username: username.value,
       password: password.value
     }
