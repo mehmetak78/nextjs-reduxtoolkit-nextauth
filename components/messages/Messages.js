@@ -15,7 +15,7 @@ const Messages = (props) => {
     <Modal onClose={props.onClose}>
       <ul className={styles['messages-list']}>
         {messages.map(message => (
-            <Message id = {message.id} message={message} />
+            <Message key={message.id} id = {message.id} message={message} />
           )
         )}
       </ul>
