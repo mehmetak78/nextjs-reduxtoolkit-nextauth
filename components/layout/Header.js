@@ -52,6 +52,13 @@ function Header(props) {
               <Link href='/profile'>Profile</Link>
             </li>
             <li>
+              <Link href='/quotes'>Quotes</Link>
+
+            </li>
+            <li>
+              <Link href='/newquote'>AddQuote</Link>
+            </li>
+            <li>
               <button onClick={logoutHandler}>Logout</button>
             </li>
           </ul>
