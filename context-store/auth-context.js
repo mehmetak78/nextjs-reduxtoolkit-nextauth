@@ -60,8 +60,8 @@ export const AuthContextProvider = (props) => {
   useEffect(() => {
     const tokenData = retrieveStoredToken();
     if (tokenData) {
-      logoutTimer = setTimeout(logoutHandler, tokenData.duration);
-      //logoutTimer = setTimeout(logoutHandler, 5000);
+      //logoutTimer = setTimeout(logoutHandler, tokenData.duration);
+      logoutTimer = setTimeout(logoutHandler, 5000);
       setToken(tokenData.token);
     }
   }, [token,logoutHandler]);
