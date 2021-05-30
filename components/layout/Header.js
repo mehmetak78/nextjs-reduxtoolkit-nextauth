@@ -35,7 +35,7 @@ function Header(props) {
               <Link href='/login'>Login</Link>
             </li>
             <li>
-              <Link href='/signup'>Sign Up</Link>
+              <Link href='/signup'>SignUp</Link>
             </li>
           </ul>
         }
