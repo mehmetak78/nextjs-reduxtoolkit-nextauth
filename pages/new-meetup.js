@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import NewMeetupForm from "../components/meetups/NewMeetupForm";
 import {useRouter} from "next/router";
 import Head from 'next/head';
+import PrivateContent from "../components/UI/PrivateContent";
 
 const NewMeetup = (props) => {
 
@@ -21,7 +22,7 @@ const NewMeetup = (props) => {
   }
 
   return (
-    <Fragment>
+    <PrivateContent>
       <Head>
         <title>Add a New Meetup</title>
         <meta
@@ -30,7 +31,7 @@ const NewMeetup = (props) => {
         />
       </Head>
       <NewMeetupForm onAddMeetup={addMeetupHandler}/>
-    </Fragment>
+    </PrivateContent>
   );
 };
 

@@ -4,6 +4,7 @@ import Head from 'next/head';
 import {Fragment} from "react";
 
 import keys from "../config/keys";
+import PrivateContent from "../components/UI/PrivateContent";
 
 const DUMMY_MEETUPS = [
   {
@@ -25,13 +26,13 @@ const DUMMY_MEETUPS = [
 
 const HomePage = (props) => {
   return (
-    <Fragment>
+    <PrivateContent>
       <Head>
         <title>NextJS React Meetups</title>
         <meta name='description' content='Browse a huge list of meetups'/>
       </Head>
       <MeetupList meetups={props.meetups}/>
-    </Fragment>
+    </PrivateContent>
   );
 };
 
