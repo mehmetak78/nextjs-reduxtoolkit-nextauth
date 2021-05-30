@@ -3,7 +3,7 @@ import {MongoClient} from "mongodb";
 import Head from 'next/head';
 import {Fragment} from "react";
 
-const keys = require("../config/keys");
+import keys from "../config/keys";
 
 const DUMMY_MEETUPS = [
   {

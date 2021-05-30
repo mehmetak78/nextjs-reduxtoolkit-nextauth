@@ -3,7 +3,7 @@
 
 import {MongoClient} from 'mongodb';
 
-const keys = require("../../config/keys");
+import keys from "../../config/keys";
 
 const handler = async (req, res) => {
 
