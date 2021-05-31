@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import MessagesIcon from "./MessagesIcon";
-import classes from './HeaderMessagesButton.module.css'
+import classes from './HeaderMessagesButton.module.scss'
 import MessagesContext from "../../context-store/messages-context";
 
 const HeaderMessagesButton = (props) => {
@@ -30,11 +30,11 @@ const HeaderMessagesButton = (props) => {
   }, [messages]);
 
   return (
-    <button className={btnClasses} onClick={props.onClick}>
+    <button className={classes.button} onClick={props.onClick}>
       <span className={classes.icon}>
         <MessagesIcon/>
       </span>
-      <span> Messages </span>
+      <span className={classes.label}> Messages </span>
       <span className={classes.badge}> {numberOfMessages} </span>
     </button>
   );

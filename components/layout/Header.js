@@ -21,7 +21,6 @@ function Header(props) {
 
   return (
     <header className={classes.header}>
-
       <div className={classes.logo}>
         <LogoMak/>
         <p>Next With Context</p>
