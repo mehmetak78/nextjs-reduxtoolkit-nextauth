@@ -63,7 +63,7 @@ function Header(props) {
               <Link href='/profile'>Profile</Link>
             </li>
             <li>
-              <button onClick={logoutHandler}>Logout</button>
+              <button className={classes.button} onClick={logoutHandler}>Logout</button>
             </li>
           </ul>
         }
