@@ -6,38 +6,35 @@ import useInput from "../hooks/useInput";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 import {useRouter} from "next/router";
-import NotificationContext from "../context-store/notification-context";
+
 import useHttp from "../hooks/use-http";
 import {fetchAuth} from "../helpers/AuthHelpers";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-import AuthContext from "../context-store/auth-context";
+
+import {useDispatch, useSelector} from "react-redux";
+import {showNotification} from "../store/notificationSlice";
+import {login} from "../store/authSlice";
+import PrivateContent from "../components/UI/PrivateContent";
 
 
 const ProfilePage = (props) => {
   const password = useInput('text', 'password', 'New Password', (value) => value.trim() !== '')
 
   const router = useRouter();
-  const notificationCtx = useContext(NotificationContext);
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
+
   const {sendRequest, status, data, error} = useHttp(fetchAuth);
-  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     if (status === 'completed') {
       if (!error) {
-        authContext.login(authContext.userName, data.idToken,);
+        dispatch(login(auth.userName, data.idToken));
         router.push('/')
-        notificationCtx.showNotification({
-                                           title: 'Success!',
-                                           message: 'Successfull Change Password',
-                                           status: 'success',
-                                         });
+        dispatch(showNotification('Success!', 'Successfull Change Password', 'success'));
       } else {
         console.log(error)
-        notificationCtx.showNotification({
-                                           title: 'Login Error',
-                                           message: error,
-                                           status: 'error',
-                                         });
+        dispatch(showNotification('Change Password Error', error, 'error'));
       }
     }
   }, [status, error]);
@@ -57,19 +54,21 @@ const ProfilePage = (props) => {
   }
 
   return (
-    <Form onSubmit={submitHandler}>
-      <Card>
-        <div>
-          <h1>{authContext.userName}</h1>
-          <Input inputHook={password}/>
-        </div>
-        <div className={styles["form-actions"]}>
-          <Button styletype='btn2' type='button' onClick={cancelHandler}>Cancel</Button>
-          <Button>Change Password</Button>
-        </div>
-        {status === 'pending' && <LoadingSpinner/>}
-      </Card>
-    </Form>
+    <PrivateContent>
+      <Form onSubmit={submitHandler}>
+        <Card>
+          <div>
+            <h1>{auth.userName}</h1>
+            <Input inputHook={password}/>
+          </div>
+          <div className={styles["form-actions"]}>
+            <Button styletype='btn2' type='button' onClick={cancelHandler}>Cancel</Button>
+            <Button>Change Password</Button>
+          </div>
+          {status === 'pending' && <LoadingSpinner/>}
+        </Card>
+      </Form>
+    </PrivateContent>
   );
 }
 

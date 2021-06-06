@@ -1,11 +1,11 @@
 import React, {Fragment, useContext, useEffect, useState} from 'react';
-import AuthContext from "../../context-store/auth-context";
-import {useRouter} from "next/router";
 
+import {useRouter} from "next/router";
+import {useSelector} from "react-redux";
 
 const PrivateContent = (props) => {
-  const authContext = useContext(AuthContext);
-  const {isLoggedIn} = authContext;
+  const auth = useSelector(state=> state.auth);
+  const {isLoggedIn} = auth;
 
   const [isLoaded, setisLoaded] = useState(false);
 

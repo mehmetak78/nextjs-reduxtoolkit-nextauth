@@ -2,21 +2,20 @@ import classes from './Header.module.scss';
 import Link from 'next/link'
 import HeaderMessagesButton from "../messages/HeaderMessagesButton";
 import LogoMak from "./LogoMAK";
-import {useContext} from "react";
-import AuthContext from "../../context-store/auth-context";
-import NotificationContext from "../../context-store/notification-context";
+
+import {logout} from "../../store/authSlice";
+
+import {useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
+import {showNotification} from "../../store/notificationSlice";
 
 function Header(props) {
-  const authContext = useContext(AuthContext);
-  const notificationCtx = useContext(NotificationContext);
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
 
   const logoutHandler = () => {
-    authContext.logout();
-    notificationCtx.showNotification({
-                                       title: 'Success!',
-                                       message: 'Successfull Logout',
-                                       status: 'success',
-                                     });
+    dispatch(logout());
+    dispatch(showNotification('Success!', 'Successfull Logout', 'success'));
   };
 
   return (
@@ -28,7 +27,7 @@ function Header(props) {
 
       <nav>
         {
-          !authContext.isLoggedIn &&
+          !auth.isLoggedIn &&
           <ul>
             <li>
               <Link href='/login'>Login</Link>
@@ -39,7 +38,7 @@ function Header(props) {
           </ul>
         }
         {
-          authContext.isLoggedIn &&
+          auth.isLoggedIn &&
           <ul>
             <li>
               <Link href='/'>Home</Link>

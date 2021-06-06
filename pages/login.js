@@ -6,11 +6,15 @@ import useInput from "../hooks/useInput";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 import {useRouter} from "next/router";
-import NotificationContext from "../context-store/notification-context";
+
 import useHttp from "../hooks/use-http";
 import {fetchAuth} from "../helpers/AuthHelpers";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-import AuthContext from "../context-store/auth-context";
+
+
+import {useDispatch} from "react-redux";
+import {showNotification} from "../store/notificationSlice";
+import {login} from "../store/authSlice";
 
 
 const LoginPage = (props) => {
@@ -18,9 +22,10 @@ const LoginPage = (props) => {
   const password = useInput('text', 'password', 'Password', (value) => value.trim() !== '')
 
   const router = useRouter();
-  const notificationCtx = useContext(NotificationContext);
+  const dispatch = useDispatch();
+
   const {sendRequest, status, data, error} = useHttp(fetchAuth);
-  const authContext = useContext(AuthContext);
+
 
   useEffect(() => {
     if (status === 'completed') {
@@ -28,20 +33,12 @@ const LoginPage = (props) => {
         const expirationTime = new Date(
           new Date().getTime() + +data.expiresIn * 1000
         );
-        authContext.login(username.value,data.idToken, expirationTime.toISOString());
+        dispatch(login(username.value, data.idToken, expirationTime.toISOString()));
         router.push('/')
-        notificationCtx.showNotification({
-                                           title: 'Success!',
-                                           message: 'Successfull Login',
-                                           status: 'success',
-                                         });
+        dispatch(showNotification('Success!','Successfull Login','success'));
       } else {
         console.log(error)
-        notificationCtx.showNotification({
-                                           title: 'Login Error',
-                                           message: error,
-                                           status: 'error',
-                                         });
+        dispatch(showNotification('Login Error',error,'error'));
       }
     }
   }, [status, error]);

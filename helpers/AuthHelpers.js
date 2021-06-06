@@ -2,6 +2,34 @@ const FIREBASE_AUTH_DOMAIN = 'https://identitytoolkit.googleapis.com/';
 
 let url;
 
+export const calculateRemainingTime = (expirationTime) => {
+  const currentTime = new Date().getTime();
+  const adjExpirationTime = new Date(expirationTime).getTime();
+
+  return adjExpirationTime - currentTime;
+};
+
+export const retrieveStoredToken = () => {
+  const storedToken = localStorage.getItem('token');
+  const storedExpirationDate = localStorage.getItem('expirationTime');
+
+  if (!storedToken) {
+    return null;
+  }
+
+  const remainingTime = calculateRemainingTime(storedExpirationDate);
+  if (remainingTime <= 3600) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expirationTime');
+    return null;
+  }
+
+  return {
+    token: storedToken,
+    expirationTime: storedExpirationDate,
+  };
+};
+
 export async function fetchAuth(userData) {
 
   let dataForFetch;
@@ -22,6 +50,13 @@ export async function fetchAuth(userData) {
         idToken: userData.token,
         password: userData.password,
         returnSecureToken: false
+      }
+      break;
+    }
+    case 'getuserdata' : {
+      url = FIREBASE_AUTH_DOMAIN + '/v1/accounts:lookup?key=AIzaSyCn0GxC6JsYFYptwMI3TFXMNn-Lr9mOPCQ';
+      dataForFetch = {
+        idToken: userData.token,
       }
       break;
     }

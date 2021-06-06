@@ -1,14 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 import MessagesIcon from "./MessagesIcon";
 import classes from './HeaderMessagesButton.module.scss'
-import MessagesContext from "../../context-store/messages-context";
+
+import {useSelector} from "react-redux";
 
 const HeaderMessagesButton = (props) => {
 
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
 
-  const messagesContext = useContext(MessagesContext);
-  const {messages} = messagesContext;
+  const messages = useSelector(state=> state.messages.messages);
 
   const numberOfMessages = messages.length;
   const btnClasses = `${classes.button} ${btnIsHighlighted ? classes.bump:''}`;

@@ -1,15 +1,15 @@
 import React, {useContext} from 'react';
 import Modal from "../UI/Modal";
-import MessagesContext from "../../context-store/messages-context";
 import Button from "../UI/Button";
 
 import styles from './Messages.module.scss'
 import Message from "./Message";
 
+import {useSelector} from "react-redux";
+
 const Messages = (props) => {
 
-  const messagesCtx = useContext(MessagesContext);
-  const messages = messagesCtx.messages;
+  const messages = useSelector(state=> state.messages.messages);
 
   return (
     <Modal onClose={props.onClose}>

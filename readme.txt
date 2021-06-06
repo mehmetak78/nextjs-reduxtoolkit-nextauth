@@ -25,6 +25,9 @@ MongoDB
 - delete api folder under pages
 - delete Home.module.css
 
+- npm install @reduxjs/toolkit
+- npm install react-redux
+
 - Create a React component in index.js which will be the home page. (The root path:  / )
 
 - The file name under pages directory will be the path name also.
@@ -53,7 +56,8 @@ MongoDB
 - Mongodb
     - npm install mongodb
 
-
+- For Modal
+    - add _document.js
 
 
 - HATA
