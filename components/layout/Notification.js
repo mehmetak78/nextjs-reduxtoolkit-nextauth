@@ -12,15 +12,17 @@ function Notification(props) {
   let statusClasses = '';
 
   if (status === 'success') {
-    statusClasses = classes.success;
+    statusClasses = styles.success;
+  }
+  else if (status === 'warning') {
+    statusClasses = styles.warning;
+  }
+  else if (status === 'error') {
+    statusClasses = styles.error;
   }
 
-  if (status === 'error') {
-    statusClasses = classes.error;
-  }
-
-  if (status === 'pending') {
-    statusClasses = classes.pending;
+  else if (status === 'pending') {
+    statusClasses = styles.pending;
   }
 
   const activeClasses = `${classes.notification} ${statusClasses}`;
